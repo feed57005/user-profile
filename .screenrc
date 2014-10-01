@@ -1,0 +1,43 @@
+#		 ___  ___ _ __ ___  ___ _ __  _ __ ___
+#		/ __|/ __| '__/ _ \/ _ \ '_ \| '__/ __|
+#	 _\__ \ (__| | |  __/  __/ | | | | | (__
+#	(_)___/\___|_|  \___|\___|_| |_|_|  \___|
+
+# Look & Feel {{{
+verbose off
+startup_message off
+caption always "%?%F%{.g.}%? %{+u}%n - %{+b w}%t%{-}%=[%h][%H]"
+hardstatus alwayslastline "%{=}%{g}[ %{W}%H %{g}][%= %{w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{B}%Y-%m-%d %{W}%c:%s %{g}]"
+# }}}
+# Key bindings {{{
+
+bind ' ' windowlist -b
+bind ^x remove
+bind ^v eval "split -v" "focus down" 
+
+# }}}
+# Layout {{{
+# ,---------+-----.
+# |         |     |
+# |         |     |
+# |         |     |
+# |         +-----|
+# |         |     |
+# `---------+-----'
+# {{{ 
+#select 0
+#split -v
+#focus down
+#select 0
+#resize -20
+#split 
+#focus down
+#resize -20
+#select 0
+#focus down
+# }}}
+# }}}
+#  Notes {{{
+#screen bash
+#blankerprg top
+# }}}
