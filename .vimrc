@@ -274,8 +274,6 @@ call vundle#rc()
 
 Bundle 'gmarik/Vundle.vim'
 
-let g:ycm_autoclose_preview_window_after_completion=1
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
@@ -288,7 +286,10 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
-Bundle "gilligan/vim-lldb" 
+
+let g:ycm_autoclose_preview_window_after_completion=1
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'gilligan/vim-lldb'
 
 filetype plugin indent on
 
