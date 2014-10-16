@@ -159,6 +159,7 @@ map <leader>tm :tabmove
 
 " Search & Replace
 map <leader>r :%s/<C-R><C-w>/
+map <leader>R :grep -r <C-R><C-w> 
 
 " ,w Fast save
 nmap <leader>w :w!<cr>
@@ -188,7 +189,7 @@ cnoremap <C-A> <Home>
 "map <C-F12> :!ctags -R -f .ctags --language-force=c++ --fields=+iaS --extra=+q .<CR>
 "set tags+=.ctags
 " }}}
-"
+
 " Plugins 
 
 " Enable filetype
@@ -286,6 +287,7 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
+Bundle 'feed57005/cmakeproj-vim'
 
 let g:ycm_autoclose_preview_window_after_completion=1
 "Bundle 'Valloric/YouCompleteMe'
