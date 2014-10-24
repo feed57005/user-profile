@@ -1,0 +1,12 @@
+set (PROJECT_NAME         "")
+set (PROJECT_DESCRIPTION  "")
+set (PROJECT_COPYRIGHT    "")
+set (PROJECT_CONTACT      "")
+set (PROJECT_VENDOR       "")
+set (PROJECT_WEBSITE      "")
+
+set (MAJOR_VERSION 0)
+set (MINOR_VERSION 0)
+set (PATCH_VERSION 0)
+
+set (MODULE_TARGET_TYPE SHARED) #STATIC)
