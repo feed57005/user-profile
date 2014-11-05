@@ -287,10 +287,14 @@ Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
-Bundle 'feed57005/cmakeproj-vim'
+Bundle 'feed57005/vim-cmakeproj'
 
-let g:ycm_autoclose_preview_window_after_completion=1
+"let g:airline_powerline_fonts=1
+Bundle 'bling/vim-airline'
+
+"let g:ycm_autoclose_preview_window_after_completion=1
 "Bundle 'Valloric/YouCompleteMe'
+
 "Bundle 'gilligan/vim-lldb'
 
 filetype plugin indent on

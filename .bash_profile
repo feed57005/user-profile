@@ -20,3 +20,6 @@ alias du='du -h'
 alias df='df -h'
 alias rm='rm -i'
 alias cd..='cd ..'
+
+# force tmux 256 color terminal
+alias tmux='tmux -2'
