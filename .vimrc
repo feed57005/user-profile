@@ -288,6 +288,7 @@ Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'feed57005/vim-cmakeproj'
+Bundle 'klen/python-mode'
 
 "let g:airline_powerline_fonts=1
 Bundle 'bling/vim-airline'
