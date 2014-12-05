@@ -4,14 +4,15 @@ script=$0
 
 if [ "$script" != './install-vimrc.sh' ];
   then
-  echo "Run this script as ./install-vimrc.sh"
+  echo "Run this script from user-profile directory as ./install-vimrc.sh"
   exit -1;
 fi
 
-home_path=$HOME
-cp -R .vim $home_path
-cp .vimrc $home_path
+script_path=`pwd`
 
-git clone https://github.com/gmarik/vundle $home_path/.vim/bundle/vundle
+cp -R .vim $HOME
+ln -s $script_path/.vimrc ~/.vimrc
+
+git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
 vim +BundleInstall +qall

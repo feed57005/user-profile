@@ -19,7 +19,7 @@ else
   set backupdir=$HOME/.vim/bak
   set directory=$HOME/.vim/tmp
   set runtimepath+=$HOME/.vim
-endif 
+endif
 " }}}
 " Search {{{
 " set highlighted incremental searching with smart case ignoring
@@ -35,22 +35,22 @@ set tabstop=2
 set shiftwidth=2
 set formatoptions=tcqron2       " 'tc' wrap text and comments using textwidth
                                 " 'q' allow formating of comments with gq
-                                " 'ro' auto comment leader after <CR> or 'o' 
+                                " 'ro' auto comment leader after <CR> or 'o'
                                 " 'n' recognize numbered lists
                                 " '2' use second line of paragraph for indent
                                 " see :h fo-table
 " }}}
 " Misc {{{
-" set wrap                        " wrap longer lines 
+" set wrap                        " wrap longer lines
 set nowrap
-set nocompatible                " 
+set nocompatible                "
 set nobackup                    " dont make backups before save
 set exrc                        " enable per-directory .vimrc (BEWARE)
 set history=700                 " how many lines of history VIM has to remember
 
 set backspace=indent,eol,start  " standard backspace behaviour
 set foldmethod=marker           " use markers for folding
-set scrolloff=7                 " Minimal number of columns to scroll verticaly 
+set scrolloff=7                 " Minimal number of columns to scroll verticaly
 set sidescroll=7                " and horizontally
 set nolazyredraw                " redraw even when executing not typed commands
 set fileformats=unix,dos        " EOL types autodetection
@@ -128,19 +128,19 @@ let g:mapleader = ","
 map <C-Tab> <Esc>:bn<CR>
 map <S-C-Tab> <Esc>:bp<CR>
 
-" <F4> Quickfix List 
+" <F4> Quickfix List
 " TODO Toggle
 map <F4> :botright cope<CR>
 imap <F4> :botright cope<CR>
 
 " <F5> save buffer & run make
-imap <F5> <Esc>:w<CR>:make<CR>
-map <F5> :w<CR>:make<CR>
+imap <F5> <Esc>:Make<CR>
+map <F5> :Make<CR>
 
-" <F6> run make run 
+" <F6> run make run
 "imap <F6> <Esc>:w<CR>:!make run<CR>
 "map <F6> :w<CR>:!make run<CR>
- 
+
 " <F12> Toogle pasting
 set pastetoggle=<F12>
 
@@ -152,14 +152,15 @@ set pastetoggle=<F12>
 "map <C-l> <C-W>l
 
 " Tabs
-map <leader>tn :tabnew<CR>
-map <leader>te :tabedit 
-map <leader>tc :tabclose<CR>
-map <leader>tm :tabmove 
+map <leader>tc :tabnew<CR>
+"map <leader>te :tabedit
+map <leader>tx :tabclose<CR>
+map <leader>tn :tabnext<CR>
+map <leader>tp :tabprevious<CR>
 
 " Search & Replace
 map <leader>r :%s/<C-R><C-w>/
-map <leader>R :grep -r <C-R><C-w> 
+map <leader>R :grep -r <C-R><C-w>
 
 " ,w Fast save
 nmap <leader>w :w!<cr>
@@ -172,7 +173,7 @@ map <leader>cc :botright cope<cr>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-" ,s for vimgrep current word in directory of the current buffer 
+" ,s for vimgrep current word in directory of the current buffer
 if has('win32')
   map <leader>s :vimgrep <cword> %:p:h\\*.cpp %:p\\*.h<cr>
 endif
@@ -182,7 +183,7 @@ nmap <leader>l :noh<cr>
 nmap <leader>m :set foldmethod=syntax<cr>
 nmap <leader>M :set foldmethod=marker<cr>
 
-" command mode 
+" command mode
 cnoremap <C-A> <Home>
 
 " ctags rebuild
@@ -190,7 +191,7 @@ cnoremap <C-A> <Home>
 "set tags+=.ctags
 " }}}
 
-" Plugins 
+" Plugins
 
 " Enable filetype
 filetype indent on
@@ -205,7 +206,7 @@ au FileType xml setlocal foldmethod=syntax
 let g:netrw_sort_sequence = '[\/]$' " sort directories first
 " }}}
 
-" fswitch {{{ 
+" fswitch {{{
 au! BufEnter *.cpp,*.cxx,*.cc,*.c,*.mm let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|'
 au! BufEnter *.h,*.hpp let b:fswitchdst = 'cpp,cc,c,mm' | let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,ifrel:|/include/|../src|'
 
@@ -220,7 +221,7 @@ nmap <silent> <Leader>oj :FSBelow<cr>
 nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 
 " }}}
- 
+
 " FuzzyFinder {{{
 map <C-b> :FufBuffer<CR>
 map <Bar> :FufLine<CR>
@@ -231,7 +232,7 @@ noremap <C-T> <C-O>
 " NERDTree {{{
 let NERDTreeWinSize=30
 let NERDTreeIgnore=['\.lo$','\.o$']
-map <leader>g :NERDTreeFind<CR> 
+map <leader>g :NERDTreeFind<CR>
 map <F2> :NERDTreeToggle<CR>
 imap <F2> :NERDTreeToggle<CR>
 " }}}
@@ -242,7 +243,7 @@ imap <F2> :NERDTreeToggle<CR>
 "  let Tlist_Use_Right_Window = 1
 "  let Tlist_Auto_Open = 1
 "  let Tlist_WinWidth = 40
-"  let Tlist_Display_Prototype = 1 
+"  let Tlist_Display_Prototype = 1
 "  let Tlist_Compact_Format = 1
 let g:tagbar_width = 40
 let g:tagbar_sort = 0
@@ -270,7 +271,7 @@ imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 " vundle
 
 filetype off
-set runtimepath+=~/.vim/bundle/vundle
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 Bundle 'gmarik/Vundle.vim'
@@ -289,6 +290,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'feed57005/vim-cmakeproj'
 Bundle 'klen/python-mode'
+Bundle 'vim-scripts/AnsiEsc.vim'
+Bundle 'cstrahan/vim-capnp'
 
 "let g:airline_powerline_fonts=1
 Bundle 'bling/vim-airline'
@@ -299,4 +302,3 @@ Bundle 'bling/vim-airline'
 "Bundle 'gilligan/vim-lldb'
 
 filetype plugin indent on
-

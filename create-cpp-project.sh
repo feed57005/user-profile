@@ -2,19 +2,18 @@
 
 name=$1
 if [ -z "$1" ]; then
-	return 1
+	echo $0 ' <project_name>'
+	exit 1
 fi
 
-pushd `dirname $0` > /dev/null
-data_path=`pwd`'/cpp-template'
-popd > /dev/null
+data_path=`dirname $(readlink  $0)`/cpp-template
+echo $data_path
 
-proj_files=`ls -A -1 $data_path`
 
 git init $name
 cd $name
 proj_path=`pwd`
 
-for file in $proj_files; do
-	cp $data_path/$file $proj_path/
+for file in `ls -A -1 $data_path`; do
+	cp -R $data_path/$file $proj_path/
 done
