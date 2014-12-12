@@ -4,7 +4,6 @@ set (CLANG_ROOT "/opt/clang-3.5")
 
 set (CMAKE_CXX_COMPILER ${CLANG_ROOT}/bin/clang++)
 set (CMAKE_C_COMPILER ${CLANG_ROOT}/bin/clang)
-#set (CMAKE_ASM_COMPILER ${CLANG_ROOT}/bin/llvm-as)
 
 set(LLVM_HOST)
 #set(CMAKE_FIND_ROOT_PATH  ${CLANG_ROOT})

@@ -5,7 +5,7 @@ search_for=$2
 
 if [[ $# -ne 2 ]]; then
 	echo "usage: $0 <base_path> <pattern>"
-	return 1
+	exit 1
 fi
 
 for lib in $(find $base_path -name \*.a) $(find $base_path -name \*.so); do echo $lib ; nm $lib | c++filt | grep $search_for | grep -v " U " ; done
