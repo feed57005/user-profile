@@ -18,8 +18,6 @@ set (COMPILER_GCC OFF)
 set (COMPILER_MSVC OFF)
 set (COMPILER_CLANG OFF)
 
-message ("cpu: ${CMAKE_SYSTEM_PROCESSOR}")
-
 # osx
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set (OS_MAC ON)
