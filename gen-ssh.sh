@@ -22,7 +22,10 @@ echo "generating key $filename $comment"
 
 ssh-keygen -b 2048 -t rsa -C "$comment" -f $filename
 
+# TODO test SSH_AGENT_PID to see if ssh-agent is running
+
 echo "adding key $filename.pub"
+chmod 600 $filename $filename.pub
 ssh-add $filename
 
 echo "public key:"

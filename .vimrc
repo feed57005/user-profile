@@ -1,8 +1,8 @@
-"					 _
-"		__   _(_)_ __ ___  _ __ ___
-"		\ \ / / | '_ ` _ \| '__/ __|
-"		 \ V /| | | | | | | | | (__
-"		(_)_/ |_|_| |_| |_|_|  \___|
+"           _
+"    __   _(_)_ __ ___  _ __ ___
+"    \ \ / / | '_ ` _ \| '__/ __|
+"     \ V /| | | | | | | | | (__
+"    (_)_/ |_|_| |_| |_|_|  \___|
 "
 set t_Co=256 " set 256 terminal colors
 
@@ -14,11 +14,13 @@ set t_Co=256 " set 256 terminal colors
 if has('win32')
   set backupdir=$HOME\vimfiles\bak
   set directory=$HOME\vimfiles\tmp
-	set runtimepath+=$HOME\vimfiles
+  set runtimepath+=$HOME\vimfiles
+  set runtimepath+=$HOME\vimfiles\snippets
 else
   set backupdir=$HOME/.vim/bak
   set directory=$HOME/.vim/tmp
   set runtimepath+=$HOME/.vim
+  set runtimepath+=$HOME/.vim/snippets
 endif
 " }}}
 " Search {{{
@@ -80,15 +82,15 @@ set laststatus=2                " show statusline - always
 
 if has("gui_running")
   set vb t_vb=                  " hitting <ESC> in Normal Mode gives me headache
-	set guitablabel=%t
+  set guitablabel=%t
   set showtabline=2             " always
-	set guioptions=aci            " 'egmrLtT' is default
-	set guifont=Terminus:h12:cEASTEUROPE
-	if not has("gui_macvim")
-		au GUIEnter * simalt ~x     " start maximized window (TODO)
-	else
-		set guifont=Droid Sans Mono:h14
-	endif
+  set guioptions=aci            " 'egmrLtT' is default
+  set guifont=Terminus:h12:cEASTEUROPE
+  if not has("gui_macvim")
+    au GUIEnter * simalt ~x     " start maximized window (TODO)
+  else
+    set guifont=Droid Sans Mono:h14
+  endif
 endif
 " }}}
 " Status line {{{
@@ -115,12 +117,12 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Ctrl+S Save buffer
-"map	<C-S>	:w<CR>
-"imap	<C-S>	<C-O>:w<CR>
+"map  <C-S>  :w<CR>
+"imap  <C-S>  <C-O>:w<CR>
 
 " Ctrl+<F4> Close buffer
-"map	<C-F4>	:q<CR>
-"imap	<C-F4>	<C-O>:q<CR>
+"map  <C-F4>  :q<CR>
+"imap  <C-F4>  <C-O>:q<CR>
 
 
 " <Ctrl><Tab>         - next/previous buffer
@@ -260,10 +262,7 @@ let g:xptemplate_brace_complete = 0
 " }}}
 
 " clang-format {{{
-if has('win32')
-else
-	let s:clang_format_path = ''
-endif
+" TODO windows version
 map <C-K> :pyf ~/.vim/clang-format.py<CR>
 imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 " }}}"
@@ -293,7 +292,7 @@ Bundle 'klen/python-mode'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'cstrahan/vim-capnp'
 
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 Bundle 'bling/vim-airline'
 
 "let g:ycm_autoclose_preview_window_after_completion=1
