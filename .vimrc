@@ -288,7 +288,7 @@ Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'feed57005/vim-cmakeproj'
-Bundle 'klen/python-mode'
+"Bundle 'klen/python-mode'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'cstrahan/vim-capnp'
 

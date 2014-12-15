@@ -1,0 +1,3 @@
+.inputrc
+.tmux.conf
+.screenrc

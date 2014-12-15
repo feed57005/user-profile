@@ -1,0 +1,3 @@
+bin/backup-dir
+bin/find-symbol
+bin/create-cpp-project.sh

@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
 fi
 
 name=$1
-data_path=`dirname $(readlink  $0)`/cpp-template
+data_path=`dirname $(readlink  $0)`/../cpp-template
 echo $data_path
 
 git init $name
