@@ -2,9 +2,9 @@
 
 script=$0
 
-if [ "$script" != './install-vimrc.sh' ]; then
+if [ "$script" != './setup-vim.sh' ]; then
 	echo $script
-  echo "Run this script from user-profile directory as ./install-vimrc.sh"
+  echo "Run this script from user-profile directory as ./setup-vim.sh"
   exit -1;
 fi
 
