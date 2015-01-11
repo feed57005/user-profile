@@ -267,6 +267,14 @@ map <C-K> :pyf ~/.vim/clang-format.py<CR>
 imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 " }}}"
 
+" airline {{{
+let g:airline_powerline_fonts=1
+" }}}
+
+" YouCompleteMe {{{
+"let g:ycm_autoclose_preview_window_after_completion=1
+"}}}
+
 " vundle
 
 filetype off
@@ -288,17 +296,13 @@ Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'feed57005/vim-cmakeproj'
-"Bundle 'klen/python-mode'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'cstrahan/vim-capnp'
 Bundle 'bronson/vim-trailing-space'
-
-let g:airline_powerline_fonts=1
+Bundle 'lpenz/vimcommander'
 Bundle 'bling/vim-airline'
-
-"let g:ycm_autoclose_preview_window_after_completion=1
 "Bundle 'Valloric/YouCompleteMe'
 
-"Bundle 'gilligan/vim-lldb'
+"Bundle 'klen/python-mode'
 
 filetype plugin indent on
