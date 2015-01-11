@@ -8,25 +8,45 @@ if [ "$script" != './setup.sh' ]; then
   exit -1;
 fi
 
-echo "Installing bash_profile"
-bash_profile=~/.bash_profile
-if [ -e $bash_profile ]; then
-	echo "$bash_profile already exists adding only path"
-	echo "# added by user-profile installation on " `date` >> $bash_profile
-	echo "export PATH=~/bin:$PATH" >> $bash_profile
-else
-	ln -s $script_path/.bash_profile $bash_profile
+read -p "Install .bash_profile ?(y/n): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	echo "Installing bash_profile"
+	bash_profile=~/.bash_profile
+	# TODO check if its symlink to our .bash_profile
+	if [ -e $bash_profile ]; then
+		read -p ".bash_profile exists, append PATH to ~/bin ?(y/n): " -n 1 -r
+		echo
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+			echo "# added by user-profile installation on " `date` >> $bash_profile
+			echo "export PATH=~/bin:$PATH" >> $bash_profile
+		fi
+	else
+		ln -s $script_path/.bash_profile $bash_profile
+	fi
 fi
+
+# install_files <list_file> <src_dir> <dst_dir>
+function install_files {
+	list_file=$1
+	if [ ! -e $list_file ]; then
+		echo "$list_file does not exist"
+		return
+	fi
+	src_dir=$2
+	dst_dir=$3
+	while read -r line
+	do
+		ln -s $src_dir/$line $dst_dir/$line
+	done < $list_file
+}
 
 echo "Installing ~/bin scripts"
 mkdir ~/bin &> /dev/null
-ln -s $script_path/create-cpp-project.sh ~/bin/create-cpp-project
-ln -s $script_path/bin/find-symbol ~/bin/find-symbol
+install_files install_scripts.txt $script_path ~
 
 echo "Installing configurations"
-ln -s $script_path/.inputrc ~/.inputrc
-ln -s $script_path/.tmux.conf ~/.tmux.conf
-ln -s $script_path/.screenrc ~/.screenrc
+install_files install_dotfiles.txt $script_path ~
 
 read -p "Generate ssh key? (y/n): " -n 1 -r
 echo
@@ -34,10 +54,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	./gen-ssh.sh id_rsa
 fi
 
-read -p "Setup git? (y/n): " -n 1 -r
-echo
 if type git &> /dev/null; then
-	./setup-git.sh
+	read -p "Setup git? (y/n): " -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		./setup-git.sh
+	fi
 else
 	echo "git is not installed!"
 	exit -1

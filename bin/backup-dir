@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+	echo "usage: $0 <directory> [scp remote address]"
+	exit 1
+fi
+
+archive_file="$1-`date +%d-%m-%y`.tar.bz2"
+
+if [ -f $archive_file ]; then
+	echo "$archive_file exists"
+	exit 1
+fi
+if [ ! -d $1 ]; then
+	echo "$1 directory does not exist"
+	exit 1
+fi
+
+tar -cjvf $archive_file --exclude=.svn --exclude=.git --exclude=build --exclude=_build $1
+
+du $archive_file
+
+if [ $# -gt 1 ]; then
+	scp $archive_file $2
+fi
+
