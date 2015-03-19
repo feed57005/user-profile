@@ -1,0 +1,11 @@
+#!/bin/bash
+
+base_path=$1
+search_for=$2
+
+if [[ $# -ne 2 ]]; then
+	echo "usage: $0 <base_path> <include pattern>"
+	exit 1
+fi
+
+grep -R "#include $search_for" $base_path | sed -e "s/.*:\(.*\)/\1/" | sort | uniq
