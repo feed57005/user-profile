@@ -5,10 +5,8 @@ if ! type git &> /dev/null; then
 fi
 
 read -p "git user.name: "
-echo
 git config --global user.name "$REPLY"
 
-echo
 read -p "git user.email: "
 git config --global user.email "$REPLY"
 

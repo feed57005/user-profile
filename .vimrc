@@ -271,6 +271,18 @@ imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 noremap <silent> <F10> :cal VimCommanderToggle()<CR>
 " }}}
 
+" airline {{{
+let g:airline_powerline_fonts=1
+" }}}
+
+" YouCompleteMe {{{
+"let g:ycm_autoclose_preview_window_after_completion=1
+"}}}
+
+" syntastic {{{
+let g:syntastic_ignore_files = ['\.java$']
+" }}}
+
 " nvim python support
 let g:python_host_prog='/usr/bin/python'
 
@@ -298,16 +310,13 @@ Bundle 'feed57005/vim-cmakeproj'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'vim-scripts/vimcommander'
 Bundle 'sukima/xmledit'
-"Bundle 'juneedahamed/svnj.vim'
-
-let g:airline_powerline_fonts=1
+Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
-
-"let g:ycm_autoclose_preview_window_after_completion=1
 "Bundle 'Valloric/YouCompleteMe'
 
-"Bundle 'klen/python-mode'
-"Bundle 'cstrahan/vim-capnp'
-"Bundle 'gilligan/vim-lldb'
+"Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
+"Bundle 'juneedahamed/svnj.vim' " subversion support
+"Bundle 'klen/python-mode' " python dev
+"Bundle 'gilligan/vim-lldb' " lldb integration
 
 filetype plugin indent on
