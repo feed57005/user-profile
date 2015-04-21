@@ -25,7 +25,7 @@ XPT node   " blockit node ..
 class `className^ : public `parentClass^ {
 public:
     BT_DEFINE_TYPE(`className^, `parentClass^);
-    
+
     `className^(`ctorParam^);
     ~`className^();
     `cursor^

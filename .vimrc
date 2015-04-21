@@ -267,6 +267,13 @@ map <C-K> :pyf ~/.vim/clang-format.py<CR>
 imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 " }}}"
 
+" vimcommander {{{
+noremap <silent> <F10> :cal VimCommanderToggle()<CR>
+" }}}
+
+" nvim python support
+let g:python_host_prog='/usr/bin/python'
+
 " vundle
 
 filetype off
@@ -288,9 +295,10 @@ Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'feed57005/vim-cmakeproj'
-"Bundle 'klen/python-mode'
 Bundle 'vim-scripts/AnsiEsc.vim'
-Bundle 'cstrahan/vim-capnp'
+Bundle 'vim-scripts/vimcommander'
+Bundle 'sukima/xmledit'
+"Bundle 'juneedahamed/svnj.vim'
 
 let g:airline_powerline_fonts=1
 Bundle 'bling/vim-airline'
@@ -298,6 +306,8 @@ Bundle 'bling/vim-airline'
 "let g:ycm_autoclose_preview_window_after_completion=1
 "Bundle 'Valloric/YouCompleteMe'
 
+"Bundle 'klen/python-mode'
+"Bundle 'cstrahan/vim-capnp'
 "Bundle 'gilligan/vim-lldb'
 
 filetype plugin indent on
