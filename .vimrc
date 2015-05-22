@@ -192,7 +192,6 @@ cnoremap <C-A> <Home>
 "map <C-F12> :!ctags -R -f .ctags --language-force=c++ --fields=+iaS --extra=+q .<CR>
 "set tags+=.ctags
 " }}}
-
 " Plugins
 
 " Enable filetype
@@ -283,6 +282,10 @@ let g:airline_powerline_fonts=1
 let g:syntastic_ignore_files = ['\.java$']
 " }}}
 
+" eclim {{{
+autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+" }}}
+
 " nvim python support
 let g:python_host_prog='/usr/bin/python'
 
@@ -297,6 +300,7 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-surround'
@@ -312,8 +316,9 @@ Bundle 'vim-scripts/vimcommander'
 Bundle 'sukima/xmledit'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
+Bundle 'justinmk/vim-sneak'
+Bundle 'Yggdroot/indentLine'
 "Bundle 'Valloric/YouCompleteMe'
-
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
 "Bundle 'juneedahamed/svnj.vim' " subversion support
 "Bundle 'klen/python-mode' " python dev
