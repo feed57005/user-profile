@@ -318,6 +318,7 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
 Bundle 'justinmk/vim-sneak'
 Bundle 'Yggdroot/indentLine'
+Bundle 'Konfekt/FastFold'
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
 "Bundle 'juneedahamed/svnj.vim' " subversion support
