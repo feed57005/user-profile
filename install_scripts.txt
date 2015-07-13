@@ -2,3 +2,4 @@ bin/backup-dir
 bin/find-symbol
 bin/create-cpp-project.sh
 bin/dir-includes
+bin/kill_ipcs.sh

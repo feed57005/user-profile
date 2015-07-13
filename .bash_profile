@@ -63,6 +63,12 @@ if [[ $platform == 'linux' ]]; then
 	fi
 fi
 
+if [[ $platform == 'linux' ]]; then
+	export LC_ALL=en_US.UTF-8
+	export LANG=en_US.UTF-8
+	export LANGUAGE=en_US.UTF-8
+fi
+
 # if neovim is installed use it instead of vim
 if type nvim &> /dev/null; then
 	alias vim='nvim'
