@@ -112,55 +112,23 @@ highlight StatusLineNC cterm=underline ctermfg=7 ctermbg=0
 " Keys {{{
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-
-" Ctrl+S Save buffer
-"map  <C-S>  :w<CR>
-"imap  <C-S>  <C-O>:w<CR>
-
-" Ctrl+<F4> Close buffer
-"map  <C-F4>  :q<CR>
-"imap  <C-F4>  <C-O>:q<CR>
-
-
-" <Ctrl><Tab>         - next/previous buffer
-"       <Shift><Tab>
-map <C-Tab> <Esc>:bn<CR>
-map <S-C-Tab> <Esc>:bp<CR>
-
-" <F4> Quickfix List
-" TODO Toggle
-map <F4> :botright cope<CR>
-imap <F4> :botright cope<CR>
 
 " <F5> save buffer & run make
 imap <F5> <Esc>:Make<CR>
 map <F5> :Make<CR>
 
-" <F6> run make run
-"imap <F6> <Esc>:w<CR>:!make run<CR>
-"map <F6> :w<CR>:!make run<CR>
-
 " <F12> Toogle pasting
 set pastetoggle=<F12>
 
-
-" Way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-h> <C-W>h
-"map <C-l> <C-W>l
-
 " Tabs
 map <leader>tc :tabnew<CR>
-"map <leader>te :tabedit
 map <leader>tx :tabclose<CR>
 map <leader>tn :tabnext<CR>
 map <leader>tp :tabprevious<CR>
 
-" Search & Replace
+" Substitute & Grep
 map <leader>r :%s/<C-R><C-w>/
 map <leader>R :grep -r <C-R><C-w>
 
@@ -171,27 +139,26 @@ nmap <leader>w :w!<cr>
 nmap <C-x> :bw<CR>
 
 " Quickfix
-map <leader>cc :botright cope<cr>
+map <F4> :botright cope<CR>
+imap <F4> :botright cope<CR>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-" ,s for vimgrep current word in directory of the current buffer
-if has('win32')
-  map <leader>s :vimgrep <cword> %:p:h\\*.cpp %:p\\*.h<cr>
-endif
-
+" no highlight
 nmap <leader>l :noh<cr>
 
+" ,m ,M syntax/marker foldmethod
 nmap <leader>m :set foldmethod=syntax<cr>
 nmap <leader>M :set foldmethod=marker<cr>
 
-" command mode
+" generate getters/setters in visual mode
+vnoremap <leader>s :s/\(\s*\)\([a-zA-Z_][a-zA-Z0-9 :]*[ \*]\+\)\([a-zA-Z_][a-zA-Z_0-9]*\)\?_;/\1\2\3() const;\r\1void set_\3(\2\3);\r/g<cr>:noh<cr>
+
+" shell like keys in command mode
 cnoremap <C-A> <Home>
 
-" ctags rebuild
-"map <C-F12> :!ctags -R -f .ctags --language-force=c++ --fields=+iaS --extra=+q .<CR>
-"set tags+=.ctags
 " }}}
+
 " Plugins
 
 " Enable filetype
@@ -223,11 +190,10 @@ nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 
 " }}}
 
-" FuzzyFinder {{{
-map <C-b> :FufBuffer<CR>
-map <Bar> :FufLine<CR>
-map <C-o> :FufFile<CR>
-noremap <C-T> <C-O>
+" CtrlP {{{
+map <C-b> :CtrlPBuffer<CR>
+map <C-o> :CtrlP<CR>
+"noremap <C-T> <C-O>
 " }}}
 
 " NERDTree {{{
@@ -305,8 +271,7 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-fswitch'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
