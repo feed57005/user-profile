@@ -193,7 +193,8 @@ nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 " CtrlP {{{
 map <C-b> :CtrlPBuffer<CR>
 map <C-o> :CtrlP<CR>
-"noremap <C-T> <C-O>
+noremap <C-T> <C-O>
+let g:ctrlp_working_path_mode=0
 " }}}
 
 " NERDTree {{{
@@ -284,6 +285,8 @@ Bundle 'bling/vim-airline'
 Bundle 'justinmk/vim-sneak'
 Bundle 'Yggdroot/indentLine'
 Bundle 'Konfekt/FastFold'
+Bundle 'terryma/vim-expand-region'
+Bundle 'airblade/vim-gitgutter'
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
 "Bundle 'juneedahamed/svnj.vim' " subversion support
