@@ -31,6 +31,7 @@ set ignorecase
 set smartcase
 " }}}
 " Tabs & Formatting {{{
+set expandtab
 set autoindent
 set smartindent
 set tabstop=2
@@ -195,6 +196,7 @@ map <C-b> :CtrlPBuffer<CR>
 map <C-o> :CtrlP<CR>
 noremap <C-T> <C-O>
 let g:ctrlp_working_path_mode=0
+let g:ctrlp_switch_buffer='V'
 " }}}
 
 " NERDTree {{{
