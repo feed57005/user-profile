@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]; then
+	echo "usage: $0 <ssh url> [public key]"
+	exit 1
+fi
+
+ssh_url=$1
+public_key=~/.ssh/id_rsa.pub
+if [ $# -gt 1 ]; then
+  public_key=$2
+fi
+
+ssh $ssh_url "echo \"`cat $public_key`\" >> ~/.ssh/authorized_keys"
