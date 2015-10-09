@@ -2,6 +2,7 @@ XPTemplate priority=personal
 
 XPTinclude
       \ _common/common
+      \ _common/common.path
       \ _comment/singleDouble
       \ _condition/c.like
       \ _func/c.like
@@ -12,6 +13,17 @@ XPTinclude
 XPTinclude
       \ c/c
 
+let s:f = g:XPTfuncs()
+
+fun! s:f.headerGuard(...)
+  let h = expand('%:p:.') " relative path
+  let h = substitute(h, '\.', '_', 'g') " replace . with _
+  let h = substitute(h, '\/', '_', 'g') " replace / with _
+  let h = substitute(h, '-', '_', 'g') " replace - with _
+  let h = substitute(h, '.', '\U\0', 'g') " make all characters upper case
+  return '__'.h.'__'
+endfunction
+
 XPT constructor " Class::Class ()
 `Type^::`Type^ (`cursor^)
 
@@ -19,28 +31,6 @@ XPT namespace " namespace {}
 namespace `name^ {
 `cursor^
 } // namespace `name^
-..XPT
-
-XPT node   " blockit node ..
-class `className^ : public `parentClass^ {
-public:
-    BT_DEFINE_TYPE(`className^, `parentClass^);
-
-    `className^(`ctorParam^);
-    ~`className^();
-    `cursor^
-private:
-};
-
-class `className^Class : public bt::GenericNodeClass<`className^, `parentClass^Class> {
-public:
-    virtual ~`className^Class() {}
-};
-
-`className^::`className^(`ctorParam^) {}
-
-`className^::~`className^() {}
-
 ..XPT
 
 XPT class   " class ..
@@ -58,11 +48,6 @@ private:
 
 ..XPT
 
-XPT btpropdef " property definitions
-BT_BEGIN_PROPERTY_DEF(`className^);
-BT_END_PROPERTY_DEF();
-..XPT
-
 XPT boolmethodoverride "
 bool `className^::`methodName^(`params^) {
     if (!`parentName^::`methodName^(`params2^)) return false;
@@ -77,9 +62,64 @@ int main(int argc, char **argv) {
 }
 
 XPT once " #ifndef .. #define ..
-XSET symbol=headerSymbol()
+XSET symbol=headerGuard()
 #ifndef `symbol^
 #define `symbol^
 
 `cursor^
 #endif `$CL^ `symbol^ `$CR^
+..XPT
+
+XPT newheader hint=c++\ class\ header
+XSET header_guard=headerGuard()
+XSET export_upper=UpperCase( R('export_prefix') )
+#ifndef `header_guard^
+#define `header_guard^
+
+#include "`path_to^/`export_prefix^_export.h"
+
+namespace `ns^ {
+
+class `export_upper^_EXPORT `className^ {
+public:
+    `className^(`ctorParam^);
+    ~`className^()` override^;
+    `cursor^
+private:
+};
+
+} // namespace `ns^
+
+#endif `$CL^ `header_guard^ `$CR^
+..XPT
+
+XPT exportguard
+#ifndef __`MODULE^_EXPORT_H__
+#define __`MODULE^_EXPORT_H__
+
+// Defines `MODULE^_EXPORT so that functionality implemented by the UI module can be
+// exported to consumers.
+
+#if defined(COMPONENT_BUILD)
+#if defined(WIN32)
+
+#if defined(`MODULE^_IMPLEMENTATION)
+#define `MODULE^_EXPORT __declspec(dllexport)
+#else
+#define `MODULE^_EXPORT __declspec(dllimport)
+#endif  // defined(`MODULE^_IMPLEMENTATION)
+
+#else  // defined(WIN32)
+#if defined(`MODULE^_IMPLEMENTATION)
+#define `MODULE^_EXPORT __attribute__((visibility("default")))
+#else
+#define `MODULE^_EXPORT
+#endif
+#endif
+
+#else  // defined(COMPONENT_BUILD)
+#define `MODULE^_EXPORT
+#endif
+
+#endif /* __`MODULE^_EXPORT_H__ */
+..XPT

@@ -197,6 +197,7 @@ map <C-o> :CtrlP<CR>
 noremap <C-T> <C-O>
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_switch_buffer='V'
+let g:ctrlp_max_files=0
 " }}}
 
 " NERDTree {{{
@@ -255,6 +256,10 @@ let g:syntastic_ignore_files = ['\.java$']
 autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
 " }}}
 
+" pymode {{{
+let g:pymode_rope = 0
+" }}}
+
 " nvim python support
 let g:python_host_prog='/usr/bin/python'
 
@@ -278,7 +283,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
-Bundle 'feed57005/vim-cmakeproj'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'vim-scripts/vimcommander'
 Bundle 'sukima/xmledit'
@@ -289,10 +293,11 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'Konfekt/FastFold'
 Bundle 'terryma/vim-expand-region'
 Bundle 'airblade/vim-gitgutter'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'klen/python-mode'
+Bundle 'Valloric/YouCompleteMe'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
-"Bundle 'juneedahamed/svnj.vim' " subversion support
-"Bundle 'klen/python-mode' " python dev
 "Bundle 'gilligan/vim-lldb' " lldb integration
+"Bundle 'feed57005/vim-cmakeproj'
+"Bundle 'feed57005/vim-gn'
 
 filetype plugin indent on
