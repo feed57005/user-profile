@@ -116,32 +116,10 @@ highlight StatusLineNC cterm=underline ctermfg=7 ctermbg=0
 let mapleader = ","
 let g:mapleader = ","
 
-" Ctrl+S Save buffer
-"map  <C-S>  :w<CR>
-"imap  <C-S>  <C-O>:w<CR>
-
-" Ctrl+<F4> Close buffer
-"map  <C-F4>  :q<CR>
-"imap  <C-F4>  <C-O>:q<CR>
-
-
-" <Ctrl><Tab>         - next/previous buffer
-"       <Shift><Tab>
-map <C-Tab> <Esc>:bn<CR>
-map <S-C-Tab> <Esc>:bp<CR>
-
 " <F4> Quickfix List
 " TODO Toggle
 map <F4> :botright cope<CR>
 imap <F4> :botright cope<CR>
-
-" <F5> save buffer & run make
-imap <F5> <Esc>:Make<CR>
-map <F5> :Make<CR>
-
-" <F6> run make run
-"imap <F6> <Esc>:w<CR>:!make run<CR>
-"map <F6> :w<CR>:!make run<CR>
 
 " <F12> Toogle pasting
 set pastetoggle=<F12>
@@ -284,6 +262,12 @@ let g:syntastic_ignore_files = ['\.java$']
 
 " eclim {{{
 autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+" }}}
+
+" vim-dispatch {{{
+" <F5> save buffer & run make
+imap <F5> <Esc>:Make<CR>
+map <F5> :Make<CR>
 " }}}
 
 " nvim python support
