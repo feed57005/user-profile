@@ -12,17 +12,31 @@ if [ $uid -ne 0 ]; then
 fi
 
 usr=$1
+git_url=https://github.com/feed57005/user-profile
 
 echo "creating user $usr"
 useradd -m -s /bin/bash $usr
 passwd $usr
 
-echo "adding $usr to sudoers"
-usermod -G sudo -a $usr
-
-read -p "run user-profile setup? (y/n/q)" -n 1 -r
+read -p "add user to sudoers ? (y/n)" -n 1 -r
 echo
-su - $usr
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	./setup.sh
+	echo "adding $usr to /etc/sudoers"
+	echo "$usr ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+fi
+
+read -p "install user-profile ? (y/n)" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	if ! type git &> /dev/null; then
+		echo "you need git to be installed"
+		exit -1
+	fi
+	sudo -i -u $usr /bin/sh - <<EOF
+cd ~/
+git clone $git_url .user_profile
+cd .user_profile
+./setup.sh
+exit
+EOF
 fi
