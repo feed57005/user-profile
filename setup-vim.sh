@@ -12,6 +12,7 @@ script_path=`pwd`
 
 cp -R .vim $HOME
 ln -s $script_path/.vimrc ~/.vimrc
+ln -s $script_path/.vimrc ~/.nvimrc
 ln -s $script_path/vim-snippets ~/.vim/snippets
 
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim

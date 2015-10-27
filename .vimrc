@@ -31,6 +31,7 @@ set ignorecase
 set smartcase
 " }}}
 " Tabs & Formatting {{{
+set expandtab
 set autoindent
 set smartindent
 set tabstop=2
@@ -112,7 +113,6 @@ highlight StatusLineNC cterm=underline ctermfg=7 ctermbg=0
 " Keys {{{
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -124,21 +124,13 @@ imap <F4> :botright cope<CR>
 " <F12> Toogle pasting
 set pastetoggle=<F12>
 
-
-" Way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-h> <C-W>h
-"map <C-l> <C-W>l
-
 " Tabs
 map <leader>tc :tabnew<CR>
-"map <leader>te :tabedit
 map <leader>tx :tabclose<CR>
 map <leader>tn :tabnext<CR>
 map <leader>tp :tabprevious<CR>
 
-" Search & Replace
+" Substitute & Grep
 map <leader>r :%s/<C-R><C-w>/
 map <leader>R :grep -r <C-R><C-w>
 
@@ -149,27 +141,26 @@ nmap <leader>w :w!<cr>
 nmap <C-x> :bw<CR>
 
 " Quickfix
-map <leader>cc :botright cope<cr>
+map <F4> :botright cope<CR>
+imap <F4> :botright cope<CR>
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
-" ,s for vimgrep current word in directory of the current buffer
-if has('win32')
-  map <leader>s :vimgrep <cword> %:p:h\\*.cpp %:p\\*.h<cr>
-endif
-
+" no highlight
 nmap <leader>l :noh<cr>
 
+" ,m ,M syntax/marker foldmethod
 nmap <leader>m :set foldmethod=syntax<cr>
 nmap <leader>M :set foldmethod=marker<cr>
 
-" command mode
+" generate getters/setters in visual mode
+vnoremap <leader>s :s/\(\s*\)\([a-zA-Z_][a-zA-Z0-9 :]*[ \*]\+\)\([a-zA-Z_][a-zA-Z_0-9]*\)\?_;/\1\2\3() const;\r\1void set_\3(\2\3);\r/g<cr>:noh<cr>
+
+" shell like keys in command mode
 cnoremap <C-A> <Home>
 
-" ctags rebuild
-"map <C-F12> :!ctags -R -f .ctags --language-force=c++ --fields=+iaS --extra=+q .<CR>
-"set tags+=.ctags
 " }}}
+
 " Plugins
 
 " Enable filetype
@@ -201,11 +192,13 @@ nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 
 " }}}
 
-" FuzzyFinder {{{
-map <C-b> :FufBuffer<CR>
-map <Bar> :FufLine<CR>
-map <C-o> :FufFile<CR>
+" CtrlP {{{
+map <C-b> :CtrlPBuffer<CR>
+map <C-o> :CtrlP<CR>
 noremap <C-T> <C-O>
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_switch_buffer='V'
+let g:ctrlp_max_files=0
 " }}}
 
 " NERDTree {{{
@@ -270,6 +263,10 @@ imap <F5> <Esc>:Make<CR>
 map <F5> :Make<CR>
 " }}}
 
+" pymode {{{
+let g:pymode_rope = 0
+" }}}
+
 " nvim python support
 let g:python_host_prog='/usr/bin/python'
 
@@ -289,12 +286,10 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-fswitch'
-Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
 Bundle 'tikhomirov/vim-glsl'
-Bundle 'feed57005/vim-cmakeproj'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'vim-scripts/vimcommander'
 Bundle 'sukima/xmledit'
@@ -302,10 +297,14 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
 Bundle 'justinmk/vim-sneak'
 Bundle 'Yggdroot/indentLine'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Konfekt/FastFold'
+Bundle 'terryma/vim-expand-region'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'klen/python-mode'
+Bundle 'Valloric/YouCompleteMe'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
-"Bundle 'juneedahamed/svnj.vim' " subversion support
-"Bundle 'klen/python-mode' " python dev
 "Bundle 'gilligan/vim-lldb' " lldb integration
+"Bundle 'feed57005/vim-cmakeproj'
+"Bundle 'feed57005/vim-gn'
 
 filetype plugin indent on
