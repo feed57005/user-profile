@@ -16,3 +16,5 @@ proj_path=`pwd`
 for file in `ls -A -1 $data_path`; do
 	cp -R $data_path/$file $proj_path/
 done
+
+git submodule add https://chromium.googlesource.com/external/googletest third_party/test/googletest
