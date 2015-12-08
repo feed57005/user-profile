@@ -123,15 +123,15 @@ map <F5> :Make<CR>
 " <F12> Toogle pasting
 set pastetoggle=<F12>
 
-" Tabs
-map <leader>tc :tabnew<CR>
-map <leader>tx :tabclose<CR>
-map <leader>tn :tabnext<CR>
-map <leader>tp :tabprevious<CR>
-
-" Substitute & Grep
+" ,r Substitute
 map <leader>r :%s/<C-R><C-w>/
-map <leader>R :grep -r <C-R><C-w>
+
+" ,R Grep
+if executable('ag')
+  map <leader>R :Ag <C-R><C-w>
+else
+  map <leader>R :grep -R <C-R><C-w>
+endif
 
 " ,w Fast save
 nmap <leader>w :w!<cr>
@@ -256,6 +256,10 @@ let g:syntastic_ignore_files = ['\.java$']
 autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
 " }}}
 
+" vim-jinja {{{
+autocmd BufNewFile,BufRead *.tmpl set ft=jinja
+" }}}
+
 " pymode {{{
 let g:pymode_rope = 0
 " }}}
@@ -295,9 +299,13 @@ Bundle 'terryma/vim-expand-region'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'klen/python-mode'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'lepture/vim-jinja'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
 "Bundle 'gilligan/vim-lldb' " lldb integration
-"Bundle 'feed57005/vim-cmakeproj'
-"Bundle 'feed57005/vim-gn'
+Bundle 'feed57005/vim-cmakeproj'
+Bundle 'feed57005/vim-tabmapping'
+Bundle 'feed57005/gn.vim'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'rking/ag.vim'
 
 filetype plugin indent on
