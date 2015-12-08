@@ -116,9 +116,10 @@ highlight StatusLineNC cterm=underline ctermfg=7 ctermbg=0
 let mapleader = ","
 let g:mapleader = ","
 
-" <F5> save buffer & run make
-imap <F5> <Esc>:Make<CR>
-map <F5> :Make<CR>
+" <F4> Quickfix List
+" TODO Toggle
+map <F4> :botright cope<CR>
+imap <F4> :botright cope<CR>
 
 " <F12> Toogle pasting
 set pastetoggle=<F12>
@@ -258,6 +259,11 @@ autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
 
 " vim-jinja {{{
 autocmd BufNewFile,BufRead *.tmpl set ft=jinja
+
+" vim-dispatch {{{
+" <F5> save buffer & run make
+imap <F5> <Esc>:Make<CR>
+map <F5> :Make<CR>
 " }}}
 
 " pymode {{{
