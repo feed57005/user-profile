@@ -15,6 +15,9 @@ ln -s $script_path/.vimrc ~/.vimrc
 ln -s $script_path/.vimrc ~/.nvimrc
 ln -s $script_path/vim-snippets ~/.vim/snippets
 
+mkdir -p $HOME/.config
+ln -s $HOME/.vim $HOME/.config/nvim
+
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
 vim +BundleInstall +qall
