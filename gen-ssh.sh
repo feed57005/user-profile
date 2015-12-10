@@ -45,5 +45,5 @@ read -p "Add to remote authorized_keys ?(y/n): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	read -p "ssh address: "
-	cat $filename.pub | ssh $REPLY 'cat - >> ~/.ssh/authorized_keys'
+	cat $filename.pub | ssh $REPLY 'mkdir -p ~/.ssh && cat - >> ~/.ssh/authorized_keys'
 fi
