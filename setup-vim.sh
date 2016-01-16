@@ -28,4 +28,4 @@ else
   echo "Vim not found, install it and run 'vim +BundleInstall +qall' to finish installation"
   exit -1
 fi
-vim +BundleInstall +qall
+$vim_exec +BundleInstall +qall
