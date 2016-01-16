@@ -1,17 +1,18 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-	echo "usage: $0 <username>"
-	exit -1
-fi
-
 uid=$(id -u)
 if [ $uid -ne 0 ]; then
 	echo "Must be run as root/sudo"
 	exit -1
 fi
 
-usr=$1
+if [ $# -ne 1 ]; then
+  read -p "username: "
+  usr=$REPLY
+else
+  usr=$1
+fi
+
 git_url=https://github.com/feed57005/user-profile
 
 echo "creating user $usr"
