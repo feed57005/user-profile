@@ -27,4 +27,5 @@ elif type nvim &> /dev/null; then
 else
   echo "Vim not found, install it and run 'vim +BundleInstall +qall' to finish installation"
   exit -1
+fi
 vim +BundleInstall +qall
