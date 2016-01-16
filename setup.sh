@@ -65,7 +65,7 @@ else
 	exit -1
 fi
 
-if type vim &> /dev/null; then
+if type vim &> /dev/null || type nvim &> /dev/null; then
 	read -p "Setup vim? (y/n): " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then

@@ -20,4 +20,11 @@ ln -s $HOME/.vim $HOME/.config/nvim
 
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
+if type vim &> /dev/null; then
+  vim_exec=vim
+elif type nvim &> /dev/null; then
+  vim_exec=nvim
+else
+  echo "Vim not found, install it and run 'vim +BundleInstall +qall' to finish installation"
+  exit -1
 vim +BundleInstall +qall
