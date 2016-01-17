@@ -310,7 +310,7 @@ Bundle 'lepture/vim-jinja'
 "Bundle 'gilligan/vim-lldb' " lldb integration
 Bundle 'feed57005/vim-cmakeproj'
 Bundle 'feed57005/vim-tabmapping'
-Bundle 'feed57005/gn.vim'
+"Bundle 'feed57005/gn.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'rking/ag.vim'
 
