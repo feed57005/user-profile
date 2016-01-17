@@ -37,6 +37,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 cd ~/
 git clone $git_url .user_profile
 cd .user_profile
+git submodule init
+git submodule update
 ./setup.sh
 exit
 EOF
