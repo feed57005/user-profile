@@ -66,6 +66,7 @@ set confirm                     " ask what to do when leaving modified buffer
 syntax on
 syntax sync maxlines=500
 set wildmode=longest,list
+set wildignorecase
 set wildmenu                    " command-line <Tab> completion above command line
 set ruler                       " show where the cursor is
 set showmatch                   " show matching bracets when text indicator is over them
