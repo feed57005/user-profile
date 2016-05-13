@@ -65,6 +65,7 @@ set confirm                     " ask what to do when leaving modified buffer
 " UI {{{
 syntax on
 syntax sync maxlines=500
+set wildmode=longest,list
 set wildmenu                    " command-line <Tab> completion above command line
 set ruler                       " show where the cursor is
 set showmatch                   " show matching bracets when text indicator is over them
@@ -259,6 +260,7 @@ autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
 
 " vim-jinja {{{
 autocmd BufNewFile,BufRead *.tmpl set ft=jinja
+" }}}
 
 " vim-dispatch {{{
 " <F5> save buffer & run make
@@ -306,12 +308,13 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'klen/python-mode'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'lepture/vim-jinja'
-"Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
-"Bundle 'gilligan/vim-lldb' " lldb integration
-Bundle 'feed57005/vim-cmakeproj'
 Bundle 'feed57005/vim-tabmapping'
-"Bundle 'feed57005/gn.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'rking/ag.vim'
+"Bundle 'pangloss/vim-javascript'
+"Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
+"Bundle 'gilligan/vim-lldb' " lldb integration
+"Bundle 'feed57005/vim-cmakeproj'
+"Bundle 'feed57005/gn.vim'
 
 filetype plugin indent on
