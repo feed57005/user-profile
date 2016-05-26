@@ -206,6 +206,7 @@ let g:ctrlp_max_files=0
 " NERDTree {{{
 let NERDTreeWinSize=30
 let NERDTreeIgnore=['\.lo$','\.o$']
+let NERDTreeShowBookmarks=1
 map <leader>g :NERDTreeFind<CR>
 map <F2> :NERDTreeToggle<CR>
 imap <F2> :NERDTreeToggle<CR>
@@ -286,36 +287,38 @@ Bundle 'gmarik/Vundle.vim'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
 Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-fswitch'
 Bundle 'kien/ctrlp.vim'
 Bundle 'drmingdrmer/xptemplate'
 Bundle 'majutsushi/tagbar'
-Bundle 'tikhomirov/vim-glsl'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'vim-scripts/vimcommander'
-Bundle 'sukima/xmledit'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
 Bundle 'justinmk/vim-sneak'
-Bundle 'Yggdroot/indentLine'
 Bundle 'Konfekt/FastFold'
 Bundle 'terryma/vim-expand-region'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'klen/python-mode'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'lepture/vim-jinja'
 Bundle 'feed57005/vim-tabmapping'
-Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'rking/ag.vim'
-"Bundle 'pangloss/vim-javascript'
+"Bundle 'Yggdroot/indentLine'
+
+" Git
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+Bundle 'airblade/vim-gitgutter'
+
+" File Types
+Bundle 'tikhomirov/vim-glsl'
+Bundle 'klen/python-mode'
+Bundle 'sukima/xmledit'
+Bundle 'tpope/vim-liquid'
+"Bundle 'lepture/vim-jinja'
+"Bundle 'mustache/vim-mustache-handlebars'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
-"Bundle 'gilligan/vim-lldb' " lldb integration
-"Bundle 'feed57005/vim-cmakeproj'
 "Bundle 'feed57005/gn.vim'
+"Bundle 'pangloss/vim-javascript'
 
 filetype plugin indent on
