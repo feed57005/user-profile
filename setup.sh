@@ -24,6 +24,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	else
 		ln -s $script_path/.bash_profile $bash_profile
 	fi
+  read -p "Add to .bashrc? (y/n): " -n 1 -r
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "source ~/.bash_profile" >> ~/.bashrc
+  fi
 fi
 
 # install_files <list_file> <src_dir> <dst_dir>
@@ -72,6 +76,6 @@ if type vim &> /dev/null || type nvim &> /dev/null; then
 		./setup-vim.sh
 	fi
 else
-	echo "vim not installed, run ./install-vimrc.sh manually after installation"
+	echo "vim not installed, run ./install-vimrc.sh manually after it is available"
 fi
 
