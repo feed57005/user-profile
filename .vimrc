@@ -4,6 +4,7 @@
 "     \ V /| | | | | | | | | (__
 "    (_)_/ |_|_| |_| |_|_|  \___|
 "
+
 set t_Co=256 " set 256 terminal colors
 
 " Directories {{{
@@ -205,7 +206,7 @@ let g:ctrlp_max_files=0
 
 " NERDTree {{{
 let NERDTreeWinSize=30
-let NERDTreeIgnore=['\.lo$','\.o$']
+let NERDTreeIgnore=['\.lo$','\.o$', '\.pyc$']
 let NERDTreeShowBookmarks=1
 map <leader>g :NERDTreeFind<CR>
 map <F2> :NERDTreeToggle<CR>
@@ -230,12 +231,10 @@ imap <F3> :TagbarToggle<CR>
 " xptemplate {{{
 " see ftplugin/_common/personal.xpt.vim for custom vars
 let g:xptemplate_brace_complete = 0
-"highlight link XPTcurrentPH Visual
-"highlight link XPTfollowingPH Visual
 " }}}
 
 " clang-format {{{
-" TODO windows version
+" TODO default paths
 map <C-K> :pyf ~/.vim/clang-format.py<CR>
 imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
 " }}}"
@@ -256,10 +255,6 @@ let g:airline_powerline_fonts=1
 let g:syntastic_ignore_files = ['\.java$']
 " }}}
 
-" eclim {{{
-autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
-" }}}
-
 " vim-jinja {{{
 autocmd BufNewFile,BufRead *.tmpl set ft=jinja
 " }}}
@@ -275,7 +270,9 @@ let g:pymode_rope = 0
 " }}}
 
 " nvim python support
-let g:python_host_prog='/usr/bin/python'
+if has('nvim')
+  let g:python_host_prog='/usr/bin/python'
+endif
 
 " vundle
 
@@ -302,7 +299,11 @@ Bundle 'Konfekt/FastFold'
 Bundle 'terryma/vim-expand-region'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'feed57005/vim-tabmapping'
-Bundle 'rking/ag.vim'
+if has('nvim')
+  Bundle 'Numkil/ag.nvim'
+else
+  Bundle 'rking/ag.vim'
+endif
 "Bundle 'Yggdroot/indentLine'
 
 " Git
