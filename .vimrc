@@ -45,7 +45,6 @@ set formatoptions=tcqron2       " 'tc' wrap text and comments using textwidth
                                 " see :h fo-table
 " }}}
 " Misc {{{
-" set wrap                        " wrap longer lines
 set nowrap
 set nocompatible                "
 set nobackup                    " dont make backups before save
@@ -60,7 +59,11 @@ set nolazyredraw                " redraw even when executing not typed commands
 set fileformats=unix,dos        " EOL types autodetection
 set ttyfast                     " fast terminal connection
 set mouse=a                     " enable mouse in all modes
+set ttymouse=sgr
 set confirm                     " ask what to do when leaving modified buffer
+set exrc                        " enable reading .vimrc from current dir
+set secure                      " disable dangerous cmds in current dir .vimrc
+
 "set textwidth=80
 " }}}
 " UI {{{
@@ -119,6 +122,10 @@ highlight StatusLineNC cterm=underline ctermfg=7 ctermbg=0
 let mapleader = ","
 let g:mapleader = ","
 
+" <F1> is Escape
+map <F1> <Esc>
+imap <F1> <Esc>
+
 " <F4> Quickfix List
 " TODO Toggle
 map <F4> :botright cope<CR>
@@ -155,9 +162,6 @@ nmap <leader>l :noh<cr>
 " ,m ,M syntax/marker foldmethod
 nmap <leader>m :set foldmethod=syntax<cr>
 nmap <leader>M :set foldmethod=marker<cr>
-
-" generate getters/setters in visual mode
-vnoremap <leader>s :s/\(\s*\)\([a-zA-Z_][a-zA-Z0-9 :]*[ \*]\+\)\([a-zA-Z_][a-zA-Z_0-9]*\)\?_;/\1\2\3() const;\r\1void set_\3(\2\3);\r/g<cr>:noh<cr>
 
 " shell like keys in command mode
 cnoremap <C-A> <Home>
@@ -213,31 +217,10 @@ map <F2> :NERDTreeToggle<CR>
 imap <F2> :NERDTreeToggle<CR>
 " }}}
 
-" tagbar-tagslist {{{
-"if exists('loaded_taglist')
-"  let Tlist_Show_One_File = 1
-"  let Tlist_Use_Right_Window = 1
-"  let Tlist_Auto_Open = 1
-"  let Tlist_WinWidth = 40
-"  let Tlist_Display_Prototype = 1
-"  let Tlist_Compact_Format = 1
-let g:tagbar_width = 40
-let g:tagbar_sort = 0
-map <F3> :TagbarToggle<CR>
-imap <F3> :TagbarToggle<CR>
-"endif
-" }}}
-
 " xptemplate {{{
 " see ftplugin/_common/personal.xpt.vim for custom vars
 let g:xptemplate_brace_complete = 0
 " }}}
-
-" clang-format {{{
-" TODO default paths
-map <C-K> :pyf ~/.vim/clang-format.py<CR>
-imap <C-K> <ESC>:pyf ~/.vim/clang-format.py<CR>i
-" }}}"
 
 " vimcommander {{{
 noremap <silent> <F10> :cal VimCommanderToggle()<CR>
@@ -245,14 +228,6 @@ noremap <silent> <F10> :cal VimCommanderToggle()<CR>
 
 " airline {{{
 let g:airline_powerline_fonts=1
-" }}}
-
-" YouCompleteMe {{{
-"let g:ycm_autoclose_preview_window_after_completion=1
-"}}}
-
-" syntastic {{{
-let g:syntastic_ignore_files = ['\.java$']
 " }}}
 
 " vim-jinja {{{
@@ -269,6 +244,49 @@ map <F5> :Make<CR>
 let g:pymode_rope = 0
 " }}}
 
+" vim-markdown {{{
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'C++=cpp']
+" }}}
+
+" Vista {{{
+let g:vista_default_executive = 'ale'
+let g:vista_sidebar_width = 50
+map <F3> :Vista!!<CR>
+imap <F3> :Vista!!<CR>
+" }}}
+
+" ALE {{{
+let g:ale_c_ccls_executable='vim-ccls'
+let g:ale_cpp_ccls_executable='vim-ccls'
+
+let g:ale_c_parse_compile_commands=1
+let g:ale_cpp_parse_compile_commands=1
+let g:ale_c_build_dir_names=['build', '_build', 'out_linux/Release', 'out_linux/Debug']
+let g:ale_completion_enabled=1
+" -log-file=~/ccls.log -v=1
+let g:ale_linters = {
+\  'cpp': ['ccls'],
+\  'c': ['ccls'],
+\}
+" Use ALE's function for omnicompletion.
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_autoimport=1
+":ALEFindReferences -vsplit
+":ALEGoToDefinition
+
+let g:ale_fixers = {
+\  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
+\}
+
+map <C-K> :ALEFix<CR>
+imap <C-K> <ESC>:ALEFix<CR>i
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" : "\<TAB>"
+" }}}
+
+autocmd! BufNewFile,BufRead *.gn,*.gni set filetype=gn
+
 " nvim python support
 if has('nvim')
   let g:python_host_prog='/usr/bin/python'
@@ -282,40 +300,40 @@ call vundle#rc()
 
 Bundle 'gmarik/Vundle.vim'
 
-Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-surround'
 Bundle 'derekwyatt/vim-fswitch'
 Bundle 'kien/ctrlp.vim'
 Bundle 'drmingdrmer/xptemplate'
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'vim-scripts/vimcommander'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'bling/vim-airline'
-Bundle 'justinmk/vim-sneak'
-Bundle 'Konfekt/FastFold'
-Bundle 'terryma/vim-expand-region'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'prabirshrestha/asyncomplete.vim'
+Bundle 'dense-analysis/ale'
+Bundle 'liuchengxu/vista.vim'
 Bundle 'feed57005/vim-tabmapping'
+
 if has('nvim')
   Bundle 'Numkil/ag.nvim'
 else
   Bundle 'rking/ag.vim'
 endif
-"Bundle 'Yggdroot/indentLine'
 
 " Git
 Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 Bundle 'airblade/vim-gitgutter'
 
-" File Types
+" File Type Support
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'klen/python-mode'
 Bundle 'sukima/xmledit'
 Bundle 'tpope/vim-liquid'
+Bundle 'tpope/vim-markdown'
+Bundle 'vim-scripts/AnsiEsc.vim'
+Bundle 'udalov/kotlin-vim'
+
 "Bundle 'lepture/vim-jinja'
 "Bundle 'mustache/vim-mustache-handlebars'
 "Bundle 'cstrahan/vim-capnp' " Cap'n Proto support
