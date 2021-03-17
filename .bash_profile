@@ -27,7 +27,7 @@ fi
 
 alias ll='ls -phg'
 alias la='ls -pahl'
-alias l='ls -CF'
+alias l='ls -1F'
 
 alias du='du -h'
 alias df='df -h'
@@ -82,3 +82,6 @@ if [ -e .java_profile ]; then
 	source .java_profile
 fi
 
+if [ -e .dart_profile ]; then
+  source "$HOME/.cargo/env"
+fi
