@@ -1,6 +1,1 @@
 bin/add-ssh-key
-bin/backup-dir
-bin/create-cpp-project.sh
-bin/dir-includes
-bin/find-symbol
-bin/kill_ipcs.sh
