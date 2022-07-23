@@ -17,11 +17,14 @@ if has('win32')
   set directory=$HOME\vimfiles\tmp
   set runtimepath+=$HOME\vimfiles
   set runtimepath+=$HOME\vimfiles\snippets
+  set runtimepath+=$HOME\vimfiles\bundle\Vundle.vim
+  set shell=$ProgramFiles\PowerShell\7\pwsh.exe
 else
   set backupdir=$HOME/.vim/bak
   set directory=$HOME/.vim/tmp
   set runtimepath+=$HOME/.vim
   set runtimepath+=$HOME/.vim/snippets
+  set runtimepath+=~/.vim/bundle/Vundle.vim
 endif
 " }}}
 " Search {{{
@@ -63,6 +66,7 @@ set ttymouse=sgr
 set confirm                     " ask what to do when leaving modified buffer
 set exrc                        " enable reading .vimrc from current dir
 set secure                      " disable dangerous cmds in current dir .vimrc
+set belloff=all                 " no bell ringing
 
 "set textwidth=80
 " }}}
@@ -210,11 +214,15 @@ let g:ctrlp_max_files=0
 
 " NERDTree {{{
 let NERDTreeWinSize=30
-let NERDTreeIgnore=['\.lo$','\.o$', '\.pyc$']
+let NERDTreeIgnore=['\.lo$','\.o$', '\.pyc$', '__pycache__', '.*\.egg-info']
 let NERDTreeShowBookmarks=1
 map <leader>g :NERDTreeFind<CR>
 map <F2> :NERDTreeToggle<CR>
 imap <F2> :NERDTreeToggle<CR>
+
+if filereadable(".NERDTreeBookmarks")
+  let NERDTreeBookmarksFile=".NERDTreeBookmarks"
+endif
 " }}}
 
 " xptemplate {{{
@@ -245,7 +253,7 @@ let g:pymode_rope = 0
 " }}}
 
 " vim-markdown {{{
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'C++=cpp']
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'C++=cpp', 'go'] ", 'gn']
 " }}}
 
 " Vista {{{
@@ -263,19 +271,22 @@ let g:ale_c_parse_compile_commands=1
 let g:ale_cpp_parse_compile_commands=1
 let g:ale_c_build_dir_names=['build', '_build', 'out_linux/Release', 'out_linux/Debug']
 let g:ale_completion_enabled=1
-" -log-file=~/ccls.log -v=1
-let g:ale_linters = {
-\  'cpp': ['ccls'],
-\  'c': ['ccls'],
-\}
+
 " Use ALE's function for omnicompletion.
 set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_autoimport=1
 ":ALEFindReferences -vsplit
 ":ALEGoToDefinition
 
+let g:ale_linters = {
+\  'cpp': ['ccls'],
+\  'c': ['ccls'],
+\  'go': ['gopls'],
+\}
 let g:ale_fixers = {
-\  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
+\  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+\  'python': ['black', 'autopep8'],
+\  'go': ['gofmt', 'goimports']
 \}
 
 map <C-K> :ALEFix<CR>
@@ -286,6 +297,7 @@ inoremap <silent><expr> <Tab>
 " }}}
 
 autocmd! BufNewFile,BufRead *.gn,*.gni set filetype=gn
+autocmd! BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 " nvim python support
 if has('nvim')
@@ -295,7 +307,6 @@ endif
 " vundle
 
 filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 Bundle 'gmarik/Vundle.vim'
@@ -333,6 +344,7 @@ Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'udalov/kotlin-vim'
+Bundle 'jvirtanen/vim-hcl'
 
 "Bundle 'lepture/vim-jinja'
 "Bundle 'mustache/vim-mustache-handlebars'
