@@ -5,8 +5,17 @@ This repo contains everything necessary to setup fresh development account on UN
 
 - [VIM][1] setup & configuration scripts
 - [tmux][2] configuration & status line (using [tmux-mem-cpu-load][3])
-- [GNU screen][4] configuration
-- bash configuration
+- [GNU screen][4] configuration (for embedded usb-serial comms)
+- *Local SSH key*
+- *bash configuration*
+  - promt customization
+  - aliases
+  - ssh-agent
+  - locale
+  - *environment*
+    * GCC `build-essentials`
+    * jdk -> `JAVA_HOME` -> `.java_profile`
+    * rust -> `source` `.cargo/env`
 - cpp project template
 - helper bash scripts
 

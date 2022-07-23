@@ -97,9 +97,6 @@ XPT exportguard
 #ifndef __`MODULE^_EXPORT_H__
 #define __`MODULE^_EXPORT_H__
 
-// Defines `MODULE^_EXPORT so that functionality implemented by the UI module can be
-// exported to consumers.
-
 #if defined(COMPONENT_BUILD)
 #if defined(WIN32)
 

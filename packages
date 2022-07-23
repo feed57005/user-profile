@@ -1,1 +1,22 @@
-curl vim build-essential git tmux silversearcher-ag python3 python3-pip nmap dnsutils tcpdump jq
+# core
+git vim tmux
+
+# development & build
+build-essential git-lfs subversion ninja-build
+
+# text utils
+silversearcher-ag  jq
+
+# python
+python3 python3-pip python3-venv
+
+# network tools
+curl dnsutils nmap tcpdump
+
+# debian/ubuntu tools
+aptitude apt-file
+
+docker.io
+
+# inotifywait
+inotify-tools

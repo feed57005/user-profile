@@ -1,0 +1,8 @@
+synaptic dconf-editor gnome-shell-extension-system-monitor
+
+
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
+gsettings set org.gnome.eog.view extrapolate false
+gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+gsettings set org.gnome.Terminal.Legacy.Settings menu-accelerator-enabled false # Disable F10 Accelerator
