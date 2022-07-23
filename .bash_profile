@@ -35,6 +35,7 @@ alias rm='rm -i'
 alias cd..='cd ..'
 
 alias grep='grep --color=auto'
+alias vgrep='grep -v'
 
 # force tmux 256 color terminal
 alias tmux='tmux -2'
@@ -74,14 +75,53 @@ if type nvim &> /dev/null; then
 	alias vim='nvim'
 fi
 
+if type kubectl &> /dev/null; then
+  source <(kubectl completion bash)
+fi
+
+if type minikube &> /dev/null; then
+  source <(minikube completion bash)
+fi
+
 # PATH config
 
 export PATH=~/bin:$PATH
 
-if [ -e .java_profile ]; then
-	source .java_profile
+profiles=''
+
+if [ -e ~/.java_profile ]; then
+  profiles+='✓ Java '
+	source ~/.java_profile
 fi
 
-if [ -e .dart_profile ]; then
-  source "$HOME/.cargo/env"
+if [ -e ~/.android_profile ]; then
+  profiles+='✓ Android '
+	source ~/.android_profile
 fi
+
+if [ -e ~/.cargo/env ]; then
+  profiles+='✓ Rust '
+  source ~/.cargo/env
+fi
+
+if [ -e ~/.cuda_profile ]; then
+  profiles+='✓ Cuda '
+  source ~/.cuda_profile
+fi
+
+if [ -e ~/.flutter_profile ]; then
+  profiles+='✓ Flutter '
+  source ~/.flutter_profile
+fi
+
+if [ -e ~/.go_profile ]; then
+  profiles+='✓ Go '
+  source ~/.go_profile
+fi
+
+if [ -e ~/.dotnet_profile ]; then
+  profiles+='✓ .NET '
+  source ~/.dotnet_profile
+fi
+
+echo "Profiles: $profiles"
